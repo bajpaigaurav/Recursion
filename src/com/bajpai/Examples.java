@@ -4,6 +4,33 @@ import java.util.Arrays;
 
 public class Examples {
 
+    // helper class for Linked list
+     static class Node {
+        int data;
+        Node next;
+
+         public int getData() {
+             return data;
+         }
+
+         public void setData(int data) {
+             this.data = data;
+         }
+
+         public Node getNext() {
+             return next;
+         }
+
+         public void setNext(Node next) {
+             this.next = next;
+         }
+
+         public Node(int data, Node next) {
+             this.data = data;
+             this.next = next;
+         }
+     }
+
 
     public static void main(String[] args) {
         System.out.println("Sum:"+sumRecursively(10));
@@ -22,6 +49,8 @@ public class Examples {
         int[] arr = new int[] {4,5,1,2,3};
         mergeSort(arr, 0, 4);
         System.out.println("Merge sort:"+ Arrays.toString(arr));
+        // reverse linked list pending
+        // mergeSorted list testing pending
     }
 
     public static int sumRecursively(int n) {
@@ -124,5 +153,25 @@ public class Examples {
         }
     }
 
+    public static void linkedListReversal(Node head) {
+
+    }
+
+    public static Node mergeSortedList(Node first, Node second) {
+         if(first == null) {
+             return second;
+         }
+         if(second == null) {
+             return first;
+         }
+
+         if(first.data < second.data) {
+             first.next = mergeSortedList(first.next, second);
+             return first;
+         } else {
+             second.next = mergeSortedList(first, second.next);
+             return second;
+         }
+    }
 
 }
