@@ -10,6 +10,8 @@ public class Examples {
         System.out.println(isPalindrome("aabbaa")); // true
         System.out.println(isPalindrome("Gaurav")); // false
         System.out.println(isPalindrome("racecar")); // true
+        System.out.println(convertToBinary(2));
+        System.out.println(convertToBinary(100));
     }
 
     public static int sumRecursively(int n) {
@@ -41,5 +43,12 @@ public class Examples {
         return false;
     }
 
+    public static String convertToBinary(int n) {
+        if( n <= 0) {
+            return "";
+        }
+
+        return n%2 + convertToBinary(n/2);
+    }
 
 }
