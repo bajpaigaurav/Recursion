@@ -4,14 +4,16 @@ public class Examples {
 
 
     public static void main(String[] args) {
-        System.out.println(sumRecursively(10));
-        System.out.println(sumRecursively(3));
-        System.out.println(reverseString("Gaurav Bajpai"));
-        System.out.println(isPalindrome("aabbaa")); // true
-        System.out.println(isPalindrome("Gaurav")); // false
-        System.out.println(isPalindrome("racecar")); // true
-        System.out.println(convertToBinary(2));
-        System.out.println(convertToBinary(100));
+        System.out.println("Sum:"+sumRecursively(10));
+        System.out.println("Sum:"+sumRecursively(3));
+        System.out.println("Reversed String:"+reverseString("Gaurav Bajpai"));
+        System.out.println("Is Palindrome:"+isPalindrome("aabbaa")); // true
+        System.out.println("Is Palindrome:"+isPalindrome("Gaurav")); // false
+        System.out.println("Is Palindrome:"+isPalindrome("racecar")); // true
+        System.out.println("Converted binary number:"+convertToBinary(2));
+        System.out.println("Converted binary number:"+convertToBinary(100));
+        System.out.println("Binary search:"+binarySearchRecursively(new int[]{1,2,3,4,5,6}, 4, 0, 5));
+        System.out.println("Binary search:"+binarySearchRecursively(new int[]{1,2,3,4,5,6}, 10, 0, 5));
     }
 
     public static int sumRecursively(int n) {
@@ -49,6 +51,24 @@ public class Examples {
         }
 
         return n%2 + convertToBinary(n/2);
+    }
+
+    public static int binarySearchRecursively(int[] arr, int target, int left, int right) {
+
+        if(left > right) {
+            return -1;
+        }
+
+        int mid = (left + right) / 2 ;
+
+        if(arr[mid] == target) {
+            return mid;
+        }
+        if(arr[mid] < target) {
+            return binarySearchRecursively(arr, target, mid+1, right);
+        }
+
+        return binarySearchRecursively(arr, target, left, mid - 1);
     }
 
 }
