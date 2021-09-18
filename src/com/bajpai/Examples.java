@@ -1,5 +1,7 @@
 package com.bajpai;
 
+import java.util.Arrays;
+
 public class Examples {
 
 
@@ -14,6 +16,12 @@ public class Examples {
         System.out.println("Converted binary number:"+convertToBinary(100));
         System.out.println("Binary search:"+binarySearchRecursively(new int[]{1,2,3,4,5,6}, 4, 0, 5));
         System.out.println("Binary search:"+binarySearchRecursively(new int[]{1,2,3,4,5,6}, 10, 0, 5));
+        System.out.println("Nth Fib:"+fibNonOptimised(5));
+        System.out.println("Nth Fib:"+fibNonOptimised(2));
+        System.out.println("Nth Fib:"+fibNonOptimised(1));
+        int[] arr = new int[] {4,5,1,2,3};
+        mergeSort(arr, 0, 4);
+        System.out.println("Merge sort:"+ Arrays.toString(arr));
     }
 
     public static int sumRecursively(int n) {
@@ -70,5 +78,51 @@ public class Examples {
 
         return binarySearchRecursively(arr, target, left, mid - 1);
     }
+
+    public static int fibNonOptimised(int num) {
+        if(num == 0 || num == 1)
+            return num;
+
+        return fibNonOptimised(num-1) + fibNonOptimised(num-2);
+    }
+
+    public static void mergeSort(int[] arr, int start, int end) {
+
+        if(start < end) {
+            int mid = (start + end) / 2;
+            mergeSort(arr, start, mid);
+            mergeSort(arr,mid+1, end);
+            merge(arr, start, mid, end);
+        }
+    }
+    public static void merge(int[] arr, int start, int mid, int end) {
+        // temp array
+        int[] temp = new int[end-start+1];
+
+        int i = start, j =mid+1, k = 0;
+
+        while( i <= mid && j <= end) {
+            if(arr[i] <= arr[j]) {
+                temp[k] = arr[i];
+                i++; k++;
+            } else {
+                temp[k] = arr[j];
+                j++; k++;
+            }
+        }
+        // left arr
+        while( i <= mid) {
+            temp[k++] = arr[i++];
+        }
+        // right arr
+        while(j <= end) {
+            temp[k++] = arr[j++];
+        }
+
+        for( i = start; i <= end; i++) {
+            arr[i] = temp[i - start];
+        }
+    }
+
 
 }
